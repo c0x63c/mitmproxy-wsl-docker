@@ -17,6 +17,8 @@ docker compose build
 
 * Access the following after docker compose up -d
 * Turn on the PROXY setting of the OS or browser and set localhost:8080.
+* Access the [URL](http://mitm.it/) and import the certificate
+* Check the contents of proxy communication on localhost:8081.
 
 ## Version
 
