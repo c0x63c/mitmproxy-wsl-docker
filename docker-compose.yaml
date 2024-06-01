@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  mitmweb:
+    build:
+      context: .
+      dockerfile: ./service/Dockerfile
+      args: 
+        - MITM_ID=mitmproxy
+        - MITM_PASS=mitmproxy
+    ports:
+      - '8080:8080/tcp'
+      - '8081:8081/tcp'
+    volumes:
+      - ./volumes/certs:/home/mitmproxy/.mitmproxy
+      - ./volumes/config/gai.conf:/etc/gai.conf
+    command: 'mitmweb --listen-host 0.0.0.0 --web-host 0.0.0.0 --proxyauth=@/etc/mitmproxy/mitm.htpasswd --set block_global=false'
+    tty: true
+    logging:
+      options:
+        max-size: '200k'
+        max-file: '10'
+
+networks:
+ default:
+  enable_ipv6: true
+  driver: bridge
+  ipam:
+   driver: default
+   config:
+    - subnet: fd01:dead:beef::/64
