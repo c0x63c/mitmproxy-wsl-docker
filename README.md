@@ -20,7 +20,7 @@ docker compose build
 
 ## Version
 
-* 2024/06/01 Initial commits.
+* 2024/06/01 Change network settings to host.
 
 ## Acknowledgments
 
